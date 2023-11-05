@@ -71,7 +71,7 @@ const Header = () => {
          
           <Navbar.Link >
             <NavLink
-              to="/avaiblefoods"
+              to="/availableFood"
               className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white md:text-red-400" : ""
               }

@@ -1,8 +1,9 @@
 
-
+import FoodItem from "../../components/FoodItem/FoodItem"
 import useFood from "../../Hooks/useFood";
 import Banner from "../../components/Banner/Banner";
 import Loading from "../Loading/Loading";
+
 
 const Home = () => {
     const { isLoading, error, data } = useFood()
@@ -12,6 +13,11 @@ const Home = () => {
     if (error) return 'An error has occurred: ' + error.message
 
     console.log(data)
+    
+    const sortedFoodData = data.slice().sort((first, sec) => sec.quantity - first.quantity);
+
+    const featuredFood = sortedFoodData .slice(0, 6);
+
     return (
         <div>
             <Banner></Banner>
@@ -22,7 +28,17 @@ const Home = () => {
                 </div>
             </div>
 
-            <p>data:{data.length}</p>
+            {/* show food according to quantity */}
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
+                {
+                    featuredFood .length > 0 ?
+                        (featuredFood .map((data) => <FoodItem key={data._id} data={data}></FoodItem>))
+
+                        :
+                        <h1 className="text-2xl flex justify-center">No food found</h1>
+                }
+
+            </div>
         </div>
     );
 };

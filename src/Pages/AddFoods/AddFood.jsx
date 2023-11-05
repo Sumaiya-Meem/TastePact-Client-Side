@@ -2,6 +2,7 @@ import { Button, Label, TextInput } from 'flowbite-react';
 import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AddFood = () => {
     const {user} =useContext(AuthContext);
@@ -29,21 +30,30 @@ const AddFood = () => {
         // console.log(addFoodInfo)
     
 
-//  axios.post("http://localhost:5000/addedFoods",addFoodInfo)
-//  .then(res=>{
-//     console.log(res.data)
-//  })
-fetch('http://localhost:5000/addedFoods', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(addFoodInfo),
-        }).then(res => res.json())
-        .then(data => {
-            console.log(data)
+ axios.post("http://localhost:5000/addedFoods",addFoodInfo)
+ .then(res=>{
+    console.log(res.data)
+    if (res.data.insertedId) {
+        Swal.fire(
+            'Add New Food',
+            'success'
+        );
+        
+        }
+        
+        form.reset();
+ })
+// fetch('http://localhost:5000/addedFoods', {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify(addFoodInfo),
+//         }).then(res => res.json())
+//         .then(data => {
+//             console.log(data)
            
-        })
+//         })
     }
 
 

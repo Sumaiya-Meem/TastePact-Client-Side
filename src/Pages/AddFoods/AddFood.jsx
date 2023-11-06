@@ -1,5 +1,5 @@
 import { Button, Label, TextInput } from 'flowbite-react';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -8,6 +8,10 @@ const AddFood = () => {
     const {user} =useContext(AuthContext);
     
   console.log(user.displayName)
+
+  useEffect(() => {
+    document.title = 'HarvestSwap | Add Food';
+  }, []);
 
     const handleAddFood = e =>{
         e.preventDefault();

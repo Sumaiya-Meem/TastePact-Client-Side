@@ -3,6 +3,7 @@ import { Card } from 'flowbite-react';
 import { Avatar } from 'flowbite-react';
 import { Badge } from 'flowbite-react';
 import { MdStreetview} from 'react-icons/md';
+
 // eslint-disable-next-line react/prop-types
 const FoodItem = ({ data }) => {
 

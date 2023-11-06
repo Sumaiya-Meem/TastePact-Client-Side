@@ -4,9 +4,15 @@ import useFood from "../../Hooks/useFood";
 import Banner from "../../components/Banner/Banner";
 import Loading from "../Loading/Loading";
 import { Link} from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 const Home = () => {
+
+    useEffect(() => {
+        document.title = 'HarvestSwap | Home';
+      }, []);
+
     const { isLoading, error, data } = useFood()
 
     if (isLoading) return <Loading></Loading>

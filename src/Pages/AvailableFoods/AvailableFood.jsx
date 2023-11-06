@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useFood from "../../Hooks/useFood";
 import Loading from "../Loading/Loading";
 import FoodItem from "../../components/FoodItem/FoodItem";
@@ -10,6 +10,10 @@ const AvailableFood = () => {
     const { isLoading, error, data } = useFood();
     const [searchFood, setSearchFood] = useState('');
     const [sortedFood, setSortedFood] = useState([]);
+
+    useEffect(() => {
+        document.title = 'HarvestSwap | Available Foods';
+      }, []);
 
     if (isLoading) return <Loading />;
 

@@ -43,17 +43,6 @@ const AddFood = () => {
         
         form.reset();
  })
-// fetch('http://localhost:5000/addedFoods', {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify(addFoodInfo),
-//         }).then(res => res.json())
-//         .then(data => {
-//             console.log(data)
-           
-//         })
     }
 
 

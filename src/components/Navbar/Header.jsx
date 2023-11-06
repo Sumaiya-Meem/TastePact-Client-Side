@@ -42,8 +42,8 @@ const Header = () => {
               <span className="block truncate text-sm font-medium">Email: {user.email}</span>
             </Dropdown.Header>
             <Dropdown.Divider />
-            <Dropdown.Item><Button color="gray" pill onClick={handleLogOut }>
-                 SignOut <span className='ml-2'><PiSignOutBold></PiSignOutBold></span>
+            <Dropdown.Item><Button color="gray" pill onClick={handleLogOut } className='text-red-600'>
+                 SignOut <span className='ml-2 '><PiSignOutBold></PiSignOutBold></span>
       </Button></Dropdown.Item>
           </Dropdown>
           
@@ -62,7 +62,7 @@ const Header = () => {
             <NavLink
               to="/"
               className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-white md:text-red-400" : ""
+                isPending ? "pending" : isActive ? "text-white md:text-[#6c5ce7]" : ""
               }
             >
               Home
@@ -73,7 +73,7 @@ const Header = () => {
             <NavLink
               to="/availableFood"
               className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-white md:text-red-400" : ""
+                isPending ? "pending" : isActive ? "text-white md:text-[#6c5ce7]" : ""
               }
             >
                Available Foods
@@ -85,7 +85,7 @@ const Header = () => {
             <NavLink
               to="/addfood"
               className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-white md:text-red-400 " : ""
+                isPending ? "pending" : isActive ? "text-white md:text-[#6c5ce7] " : ""
               }
             >
                Add Food
@@ -97,7 +97,7 @@ const Header = () => {
             <NavLink
               to="/managefood"
               className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-white md:text-red-400" : ""
+                isPending ? "pending" : isActive ? "text-white md:text-[#6c5ce7]" : ""
               }
             >
                Manage My Foods
@@ -109,7 +109,7 @@ const Header = () => {
             <NavLink
               to="/foodrequest"
               className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-white md:text-red-400" : ""
+                isPending ? "pending" : isActive ? "text-white md:text-[#6c5ce7]" : ""
               }
             >
                My Food Request
@@ -127,7 +127,7 @@ const Header = () => {
             <NavLink
               to="/login"
               className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-white md:text-red-400" : ""
+                isPending ? "pending" : isActive ? "text-white md:text-[#6c5ce7]" : ""
               }
             >
              Login
@@ -139,7 +139,7 @@ const Header = () => {
             <NavLink
               to="/register"
               className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-white md:text-red-400" : ""
+                isPending ? "pending" : isActive ? "text-white md:text-[#6c5ce7]" : ""
               }
             >
              Register

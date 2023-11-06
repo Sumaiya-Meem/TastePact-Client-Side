@@ -1,8 +1,9 @@
-
+import { Button } from 'flowbite-react';
 import FoodItem from "../../components/FoodItem/FoodItem"
 import useFood from "../../Hooks/useFood";
 import Banner from "../../components/Banner/Banner";
 import Loading from "../Loading/Loading";
+import { Link} from 'react-router-dom';
 
 
 const Home = () => {
@@ -13,10 +14,10 @@ const Home = () => {
     if (error) return 'An error has occurred: ' + error.message
 
     console.log(data)
-    
+
     const sortedFoodData = data.slice().sort((first, sec) => sec.quantity - first.quantity);
 
-    const featuredFood = sortedFoodData .slice(0, 6);
+    const featuredFood = sortedFoodData .slice(0, 8);
 
     return (
         <div>
@@ -38,7 +39,11 @@ const Home = () => {
                         <h1 className="text-2xl flex justify-center">No food found</h1>
                 }
 
+ 
             </div>
+            <div className='w-[100px] mx-auto my-5'>
+                    <Link to="/availableFood"><Button color="warning">Show All</Button></Link>
+                </div>
         </div>
     );
 };

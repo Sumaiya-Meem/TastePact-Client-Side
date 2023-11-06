@@ -1,24 +1,42 @@
 
 import { Card } from 'flowbite-react';
+import { Avatar } from 'flowbite-react';
+import { Badge } from 'flowbite-react';
+import { MdStreetview} from 'react-icons/md';
+// eslint-disable-next-line react/prop-types
+const FoodItem = ({ data }) => {
 
-
-const FoodItem = ({data}) => {
-
-   const {foodImage,foodName,quantity} =data;
    
+
+    // eslint-disable-next-line react/prop-types
+    const { foodImage, foodName, userName, userImage, quantity, location, date, note } = data;
+
     return (
         <div >
-    <Card
-    >
-    <img src={foodImage} alt="" className='w-full h-[200px]'/>
-      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        {foodName}
-      </h5>
-      <p className="font-normal text-gray-700 dark:text-gray-400">
-        {quantity}
-      </p>
-    </Card>
- 
+            <Card className='h-[650px]'>
+                <img src={foodImage} alt="" className='w-full h-[200px] rounded-lg' />
+                <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Food Name: {foodName} </h5>
+                {/* donar info */}
+
+                <Avatar img={userImage} rounded>
+                    <div className="space-y-1 font-medium dark:text-white">
+                        <div className='flex flex-col'> <p>Donar Name</p>
+                             <p className='ml-5 text-[#6f60e2]'>{userName}</p>
+                        </div>
+                        
+                    </div>
+                </Avatar>
+
+                <p> <span  className="font-semibold text-black ">Quantity:</span> {quantity} person</p>
+                <p><span  className="font-semibold text-black ">Expired Date:</span>  {date}</p>
+                <p><span  className="font-semibold text-black ">Pickup Location:</span>  {location}</p>
+                <p><span  className="font-semibold text-black ">About this Food: </span> {note.length > 200 ? `${note.slice(0,200)}...` : note}</p>
+                <div className='w-[100px] mx-auto '>
+                <Badge icon={MdStreetview} className='bg-[#439e8c] text-white'><p className=''>View Details</p>
+                </Badge>
+                </div>
+            </Card>
+
         </div>
     );
 };

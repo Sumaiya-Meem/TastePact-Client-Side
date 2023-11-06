@@ -95,7 +95,7 @@ const Header = () => {
 
           <Navbar.Link >
             <NavLink
-              to="/managefood"
+              to="/manageFood"
               className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white md:text-[#6c5ce7]" : ""
               }
@@ -107,7 +107,7 @@ const Header = () => {
 
           <Navbar.Link >
             <NavLink
-              to="/foodrequest"
+              to="/foodRequest"
               className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white md:text-[#6c5ce7]" : ""
               }

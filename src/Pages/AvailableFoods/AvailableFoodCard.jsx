@@ -29,7 +29,7 @@ const AvailableFoodCard = ({data}) => {
                 <p><span className="font-semibold text-black ">About this Food: </span> {note.length > 200 ? `${note.slice(0, 200)}...` : note}</p>
                 <div className='w-[100px] mx-auto '>
 
-                    <Link to={`singleFood/${_id}`} >
+                    <Link to={`food/${_id}`} >
                         <Badge icon={MdStreetview} className='bg-[#439e8c] text-white'><p className=''>View Details</p>
                         </Badge>
                     </Link>

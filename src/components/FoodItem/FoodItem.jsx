@@ -37,7 +37,7 @@ const FoodItem = ({ data }) => {
                 <div className='w-[100px] mx-auto '>
 
 
-                <Link to={`/singleFood/${_id}`}>
+                <Link to={`/food/${_id}`}>
                 <Badge  icon={MdStreetview} className='bg-[#439e8c] text-white'><p className=''>View Details</p>
                         </Badge></Link>
                         {/* <button onClick={()=>goTo(`/singleFood/${_id}`)} className='bg-[#439e8c] text-white'>View Details</button> */}

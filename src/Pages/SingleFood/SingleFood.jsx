@@ -30,13 +30,14 @@ const SingleFood = () => {
 
     const currentTime = getCurrentTime();
 
-    const customerEmail = user.email;
+    const requesterEmail = user.email;
+    const requesterName = user.displayName;
+    const requesterImage= user.photoURL;
 
     const handleRequestFood = () => {
-
         const requestFoodInfo = {
-            _id, foodName, foodImage, userEmail, userName, customerEmail, currentTime, location,
-            date, customerNote, donationMoney
+            _id, foodName, foodImage, userEmail, userName, requesterEmail, currentTime, location,
+            date, customerNote, donationMoney,requesterName,requesterImage,status:'pending'
         }
         //  console.log(requestFoodInfo);
         axios.post("http://localhost:5000/requestFood", requestFoodInfo)

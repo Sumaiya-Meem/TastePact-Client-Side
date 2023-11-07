@@ -1,11 +1,19 @@
 import { Button, Label, TextInput, Textarea } from "flowbite-react";
-import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
+import { useLoaderData} from "react-router-dom";
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const UpdateFood = () => {
+    
     const data = useLoaderData()
     console.log(data)
+    
+    const[note,setNote]=useState(data.note)
+    // console.log(note)
+   
 
-    const handleAddFood = e => {
+    const handleUpdateFood = e => {
         e.preventDefault();
         const form = e.target
 
@@ -16,30 +24,16 @@ const UpdateFood = () => {
             quantity: form.quantity.value || "Not-Given",
             location: form.location.value || "Not-Given",
             date: form.date.value || "Not-Given",
-            note: form.note.value || "Not-Given",
-            // status:'available',
+            note,
         }
         console.log(updateFoodInfo)
 
-
-        //  axios.post("http://localhost:5000/addedFoods",addFoodInfo)
-        //  .then(res=>{
-        //     console.log(res.data)
-        //     // if (res.data.insertedId) {
-        //     //     Swal.fire(
-        //     //         'Add New Food',
-        //     //         'success'
-        //     //     );
-
-        //     //     }
-
-        //         // form.reset();
-        //  })
+    //    axios.put()
     }
 
     return (
         <div className="my-10 p-4">
-            <form className="flex flex-col gap-4" onSubmit={handleAddFood}>
+            <form className="flex flex-col gap-4" onSubmit={handleUpdateFood}>
                 {/* 1st row */}
                 <div className='flex gap-2'>
                     <div className='flex-1 '>
@@ -84,7 +78,9 @@ const UpdateFood = () => {
                     <div >
                         <Label htmlFor="comment" value="About this food" />
                     </div>
-                    <Textarea className="w-[50%]" id="comment" defaultValue={data.note} placeholder="Write something about this food..." required rows={4} />
+                    <Textarea className="w-[50%]" id="comment" defaultValue={data.note} 
+                    onChange={(e) => setNote(e.target.value)} 
+                    placeholder="Write something about this food..." required rows={4} />
 
                 </div>
                 <Button type="submit" className='text-2xl'>Update Food</Button>

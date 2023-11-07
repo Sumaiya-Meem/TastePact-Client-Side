@@ -7,6 +7,8 @@ import { Button } from "flowbite-react";
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBin2Fill} from 'react-icons/ri';
 import {  MdManageAccounts} from 'react-icons/md';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import "./table.css"
 
@@ -75,8 +77,34 @@ const ManageFood = () => {
     const tableInstance = useTable({ columns, data: addFood });
 
 
-    const handleDelete =() =>{
+    const handleDelete =(id) =>{
+        Swal.fire({
+            title: 'Are you sure to delete?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ee5253',
+            cancelButtonColor: '#2e86de',
+            confirmButtonText: 'Yes, delete it!'
+        })
+        .then((res)=>{
+           if(res.isConfirmed){
+            axios.delete(`http://localhost:5000/addedFoods/${id}`)
+            .then(res => {
+                        console.log(res.data)
+                        if (res.data.deletedCount > 0) {
+                            const addFoodWithoutDelete =addFood.filter((food)=>food._id!==id) 
+                        setAddFood(addFoodWithoutDelete)
+                              Swal.fire(
+                                'Deleted!',
+                                'success'
+                              )
+                        }
+                    })
+
+           }
+        })
         
+       
     }
 
 
@@ -120,7 +148,7 @@ const ManageFood = () => {
                                                 </Link>
                                                 <button>
                                                 
-                                                <Button className="w-8 h-8 bg-red-600" onClick={handleDelete}>
+                                                <Button className="w-8 h-8 bg-red-600" onClick={() => handleDelete(row.original._id)}>
                                                         <RiDeleteBin2Fill className="h-5 w-5" />
 
                                                     </Button>

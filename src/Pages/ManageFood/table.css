@@ -1,0 +1,18 @@
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.table td{
+    color:black;
+    font-weight: 500;
+}
+.table th,
+.table td {
+    border: 1px solid #d8c8c8;
+    padding: 8px;
+    text-align: center;
+    text-transform: capitalize;
+}
+.table th{
+    color:#354b88;
+}

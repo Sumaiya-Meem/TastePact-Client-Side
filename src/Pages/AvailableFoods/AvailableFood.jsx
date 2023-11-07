@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import useFood from "../../Hooks/useFood";
 import Loading from "../Loading/Loading";
-import FoodItem from "../../components/FoodItem/FoodItem";
 import { TextInput } from 'flowbite-react';
 import { BsSearch, BsCalendarDate } from 'react-icons/bs';
 import { Button } from 'flowbite-react';
+import AvailableFoodCard from './AvailableFoodCard';
+// import { useLoaderData } from 'react-router-dom';
 
 const AvailableFood = () => {
     const { isLoading, error, data } = useFood();
+
+    // const data =useLoaderData()
     const [searchFood, setSearchFood] = useState('');
     const [sortedFood, setSortedFood] = useState([]);
     const [isSorted, setIsSorted] = useState(false);
@@ -59,7 +62,7 @@ const AvailableFood = () => {
             </div>
             {/* Show food */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
-                {displayedFoods.map(food => <FoodItem key={food._id} data={food} />)}
+                {displayedFoods.map(food => <AvailableFoodCard key={food._id} data={food}></AvailableFoodCard>)}
             </div>
         </div>
     );

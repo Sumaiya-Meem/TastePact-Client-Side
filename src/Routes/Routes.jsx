@@ -20,6 +20,7 @@ const router = createBrowserRouter([
         {
           path: "/",
           element: <Home></Home>,
+          // loader:()=>fetch('http://localhost:5000/addedFoods')
         },
         {
           path: "/addFood",
@@ -28,13 +29,20 @@ const router = createBrowserRouter([
         {
           path: "/availableFood",
           element: <AvailableFood></AvailableFood>,
+          // loader:()=>fetch('http://localhost:5000/addedFoods')
         },
         {
+          path:"/singleFood/:id",
+          element:<SingleFood></SingleFood>,
+          loader:({params})=>fetch(`http://localhost:5000/addedFoods/${params.id}`)
+
+        },{
           path:"/availableFood/singleFood/:id",
-          element:<PrivateRoute><SingleFood></SingleFood></PrivateRoute>,
+          element:<SingleFood></SingleFood>,
           loader:({params})=>fetch(`http://localhost:5000/addedFoods/${params.id}`)
 
         },
+
         {
           path: "/manageFood",
           element: <PrivateRoute><ManageFood></ManageFood></PrivateRoute>,

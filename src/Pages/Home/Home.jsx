@@ -5,6 +5,7 @@ import Banner from "../../components/Banner/Banner";
 import Loading from "../Loading/Loading";
 import { Link} from 'react-router-dom';
 import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 
 const Home = () => {
@@ -12,14 +13,15 @@ const Home = () => {
     useEffect(() => {
         document.title = 'HarvestSwap | Home';
       }, []);
-
+  
+    // const data =useLoaderData();
     const { isLoading, error, data } = useFood()
 
     if (isLoading) return <Loading></Loading>
 
     if (error) return 'An error has occurred: ' + error.message
 
-    console.log(data)
+    // console.log(data)
 
     const sortedFoodData = data.slice().sort((first, sec) => sec.quantity - first.quantity);
 

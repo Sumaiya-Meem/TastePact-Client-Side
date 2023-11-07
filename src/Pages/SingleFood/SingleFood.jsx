@@ -6,7 +6,7 @@ const SingleFood = () => {
     console.log(data)
     return (
         <div>
-            <h1>Single Food</h1>
+            <h1>Single Food:{data.foodName}</h1>
         </div>
     );
 };

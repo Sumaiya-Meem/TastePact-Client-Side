@@ -2,6 +2,9 @@
     border-collapse: collapse;
     width: 100%;
 }
+.table .note{
+    font-weight: 400;
+}
 .table td{
     color:black;
     font-weight: 500;

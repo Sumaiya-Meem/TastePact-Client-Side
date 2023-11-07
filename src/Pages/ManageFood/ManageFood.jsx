@@ -52,6 +52,11 @@ const ManageFood = () => {
             {
                 Header: 'About This Food',
                 accessor: 'note',
+                Cell: row => (
+                        <div className="note"> 
+                        {row.value}
+                    </div>
+                ),
             },
             {
                 Header: 'Actions',
@@ -70,10 +75,9 @@ const ManageFood = () => {
     const tableInstance = useTable({ columns, data: addFood });
 
 
-    // const handleDelete = (food) => {
-    //     console.log(`Delete food: ${food.foodName}`);
-    // };
-
+    const handleDelete =() =>{
+        
+    }
 
 
     return (
@@ -116,7 +120,7 @@ const ManageFood = () => {
                                                 </Link>
                                                 <button>
                                                 
-                                                <Button className="w-8 h-8 bg-red-600" >
+                                                <Button className="w-8 h-8 bg-red-600" onClick={handleDelete}>
                                                         <RiDeleteBin2Fill className="h-5 w-5" />
 
                                                     </Button>

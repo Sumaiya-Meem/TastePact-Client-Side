@@ -4,9 +4,11 @@ import { Button, Modal } from 'flowbite-react';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import { useContext, useState } from 'react';
 import { AuthContext } from "../../Context/AuthProvider";
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const SingleFood = () => {
-     const {user}=useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     //  console.log(user)
 
@@ -15,21 +17,44 @@ const SingleFood = () => {
 
     const [openModal, setOpenModal] = useState(false);
     const [customerNote, setCustomerNote] = useState('');
-    const [donation, setDonation] = useState('');
+    const [donationMoney, setDonationMoney] = useState('');
 
     const { _id, userName, userEmail, foodImage, foodName, location, quantity, date } = data || "Not-Given"
     // console.log(userName,userImage)
 
     const getCurrentTime = () => {
-        const currentDate = new Date().toLocaleDateString(); 
+        const currentDate = new Date().toLocaleDateString();
         const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         return `${currentDate} ${currentTime}`;
     };
 
-    const currentTime = getCurrentTime(); 
+    const currentTime = getCurrentTime();
 
-    const handleRequestFood = () =>{
-   console.log("Request Click")
+    const customerEmail = user.email;
+
+    const handleRequestFood = () => {
+
+        const requestFoodInfo = {
+            _id, foodName, foodImage, userEmail, userName, customerEmail, currentTime, location,
+            date, customerNote, donationMoney
+        }
+        //  console.log(requestFoodInfo);
+        axios.post("http://localhost:5000/requestFood", requestFoodInfo)
+            .then(res => {
+                // console.log(res.data)
+                if (res.data.insertedId) {
+                    Swal.fire(
+                        'Your response is accepted',
+                        'success'
+                    );
+
+                }
+                setOpenModal(false)
+                setCustomerNote('');
+                setDonationMoney('');
+
+            })
+
     }
 
 
@@ -75,10 +100,10 @@ const SingleFood = () => {
 
             {/* Modal section*/}
             <Modal dismissible show={openModal} onClose={() => setOpenModal(false)} >
-               
+
                 <Modal.Body>
                     <div className="space-y-2">
-                    <div className="mb-2 flex items-center gap-2">
+                        {/* <div className="mb-2 flex items-center gap-2">
                         <img src={foodImage} alt="" className="h-[150px] w-[70%] mx-auto"/>
                 </div>
                 <div className="mb-2 flex items-center gap-2">
@@ -115,17 +140,18 @@ const SingleFood = () => {
                 <div className="mb-2 flex items-center gap-2">
                         <Label  value="Expired Date" className="flex-1"/>
                         <TextInput type="text" placeholder="Current Time" value={date}  disabled   className="flex-1"/>
-                </div>
-                <div className="mb-2 flex items-center gap-2">
-                        <Label  value="Additional Notes" className="flex-1"/>
-                        <TextInput type="text" placeholder="Note" value={customerNote} onChange={(e)=>setCustomerNote(e.target.value)}  className="flex-1"/>
-                </div>
-                <div className="mb-2 flex items-center gap-2">
-                        <Label  value=" Donation Money" className="flex-1"/>
-                        <TextInput type="text" placeholder="$" value={donation} onChange={(e)=>setDonation(e.target.value)}  className="flex-1"/>
-                </div>
-                
-                </div>
+                </div> */}
+
+                        <div className="mb-2 flex items-center gap-2">
+                            <Label value="Additional Notes" className="flex-1" />
+                            <TextInput type="text" placeholder="Note" value={customerNote} onChange={(e) => setCustomerNote(e.target.value)} className="flex-1" />
+                        </div>
+                        <div className="mb-2 flex items-center gap-2">
+                            <Label value=" donationMoney Money" className="flex-1" />
+                            <TextInput type="text" placeholder="$" value={donationMoney} onChange={(e) => setDonationMoney(e.target.value)} className="flex-1" />
+                        </div>
+
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={handleRequestFood} >Request</Button>

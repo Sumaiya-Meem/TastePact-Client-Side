@@ -33,12 +33,12 @@ const router = createBrowserRouter([
         },
         {
           path:"/food/:id",
-          element:<SingleFood></SingleFood>,
+          element:<PrivateRoute><SingleFood></SingleFood></PrivateRoute>,
           loader:({params})=>fetch(`http://localhost:5000/addedFoods/${params.id}`)
 
         },{
           path:"/availableFood/food/:id",
-          element:<SingleFood></SingleFood>,
+          element:<PrivateRoute><SingleFood></SingleFood></PrivateRoute>,
           loader:({params})=>fetch(`http://localhost:5000/addedFoods/${params.id}`)
 
         },

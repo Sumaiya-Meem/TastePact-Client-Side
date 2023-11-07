@@ -133,7 +133,7 @@ const ManageFood = () => {
                                     <td key={cell.getCellProps().key} {...cell.getCellProps()}>
                                         {cell.column.Header === 'Actions' ? (
                                             <div className="flex flex-col gap-2 items-center">
-                                                 <Link to="/">
+                                                 <Link to={`/manageFood/${row.original._id}`}>
                                                         <Button className="w-8 h-8 bg-[#718093]" >
                                                         <MdManageAccounts className="mr-1 h-5 w-5" />
                                                             

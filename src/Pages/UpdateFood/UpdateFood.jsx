@@ -1,6 +1,6 @@
 import { Button, Label, TextInput, Textarea } from "flowbite-react";
 import { useState } from "react";
-import { useLoaderData} from "react-router-dom";
+import { useLoaderData, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -11,6 +11,7 @@ const UpdateFood = () => {
     
     const[note,setNote]=useState(data.note)
     // console.log(note)
+    const navigate =useNavigate();
    
 
     const handleUpdateFood = e => {
@@ -26,9 +27,21 @@ const UpdateFood = () => {
             date: form.date.value || "Not-Given",
             note,
         }
-        console.log(updateFoodInfo)
+        // console.log(updateFoodInfo)
 
-    //    axios.put()
+       axios.put(`http://localhost:5000/addedFoods/${data._id}`,updateFoodInfo)
+       .then(res=>{
+        // console.log(res.data)
+        if (res.data.modifiedCount>0) {
+            Swal.fire(
+                'Update  successfully',
+                'success'
+            );
+            form.reset();
+            navigate("/manageFood");
+        }
+       }
+        )
     }
 
     return (

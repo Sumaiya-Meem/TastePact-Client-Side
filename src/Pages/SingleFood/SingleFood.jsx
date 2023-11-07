@@ -2,9 +2,14 @@ import { useLoaderData } from "react-router-dom";
 import { Card, Label, TextInput } from 'flowbite-react';
 import { Button, Modal } from 'flowbite-react';
 import { HiOutlineArrowRight } from 'react-icons/hi';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from "../../Context/AuthProvider";
 
 const SingleFood = () => {
+     const {user}=useContext(AuthContext);
+
+    //  console.log(user)
+
     const data = useLoaderData()
     // console.log(data)
 
@@ -14,12 +19,18 @@ const SingleFood = () => {
 
     const { _id, userName, userEmail, foodImage, foodName, location, quantity, date } = data || "Not-Given"
     // console.log(userName,userImage)
+
     const getCurrentTime = () => {
+        const currentDate = new Date().toLocaleDateString(); 
         const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        return currentTime;
+        return `${currentDate} ${currentTime}`;
     };
 
     const currentTime = getCurrentTime(); 
+
+    const handleRequestFood = () =>{
+   console.log("Request Click")
+    }
 
 
     return (
@@ -27,7 +38,7 @@ const SingleFood = () => {
 
             <div className="flex flex-col md:flex-row shadow-lg">
                 <div className="flex-1 flex flex-col items-center justify-center border-2  p-2">
-                    <h1 className="font-semibold text-center mb-4 text-[#6456d2] text-2xl">Donor Information</h1>
+                    <h1 className="font-semibold text-center mb-4 text-[#0984e3] text-2xl">Donor Information</h1>
 
                     <div className="space-y-1 font-medium ">
                         <div className='text-black'>
@@ -78,17 +89,23 @@ const SingleFood = () => {
                         <Label  value="Food Item" className="flex-1"/>
                         <TextInput type="text" placeholder="Food Name" value={foodName} disabled className="flex-1"/>
                 </div>
-                <div className="mb-2 flex items-center gap-2">
-                        <Label  value="Donator Name" className="flex-1"/>
-                        <TextInput type="text" placeholder="Food Name" value={userName} disabled className="flex-1"/>
-                </div>
+                
                 <div className="mb-2 flex items-center gap-2">
                         <Label  value="Donator Email" className="flex-1"/>
                         <TextInput type="text" placeholder="Food Name" value={userEmail} disabled className="flex-1"/>
                 </div>
                 <div className="mb-2 flex items-center gap-2">
-                        <Label  value="Donator Email" className="flex-1"/>
-                        <TextInput type="text" placeholder="Current Time" value={currentTime}  className="flex-1"/>
+                        <Label  value="Donator Name" className="flex-1"/>
+                        <TextInput type="text" placeholder="Food Name" value={userName} disabled className="flex-1"/>
+                </div>
+                <div className="mb-2 flex items-center gap-2">
+                        <Label  value="User Name" className="flex-1"/>
+                        <TextInput type="text" placeholder="User Name" value={user.email} disabled className="flex-1"/>
+                </div>
+
+                <div className="mb-2 flex items-center gap-2">
+                        <Label  value=" Request Date" className="flex-1"/>
+                        <TextInput type="text" placeholder="Current Time" value={currentTime} disabled className="flex-1"/>
                 </div>
 
                 <div className="mb-2 flex items-center gap-2">
@@ -111,7 +128,7 @@ const SingleFood = () => {
                 </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => setOpenModal(false)}>Request</Button>
+                    <Button onClick={handleRequestFood} >Request</Button>
                     <Button color="gray" onClick={() => setOpenModal(false)}>
                         Close
                     </Button>

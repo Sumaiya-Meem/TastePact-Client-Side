@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import useRequestFood from "../../Hooks/useRequestFood";
 import Loading from "../Loading/Loading";
 import { useEffect, useState } from "react";
@@ -30,17 +30,17 @@ const ManageSingleFood = () => {
     if (error) return 'An error has occurred: ' + error.message;
 
     // console.log(requestFood.foodName)
-    const handleStatusChange = (id) => {
-        const updatedRequestFood = requestFood.map(food => {
-            if (food._id === id) {
-                if (food.status === 'available') {
-                    return { ...food, status: 'delivered' }
-                }
-            }
-            return food;
-         });
+    // const handleStatusChange = (id) => {
+        // const updatedRequestFood = requestFood.map(food => {
+        //     if (food._id === id) {
+        //         if (food.status === 'available') {
+        //             return { ...food, status: 'delivered' }
+        //         }
+        //     }
+        //     return food;
+        //  });
 
-        setRequestFood(updatedRequestFood);
+        // setRequestFood(updatedRequestFood);
         
         //  console.log(data)
         //  console.log(id)
@@ -70,9 +70,8 @@ const ManageSingleFood = () => {
                 
         // }
        
-    };
+    // };
     // console.log(requestFood)
-   
 
     return (
         <div>
@@ -110,9 +109,13 @@ const ManageSingleFood = () => {
                             </div>
                             <div className="flex items-center justify-center gap-2">
                                 <span className="text-xl font-semibold">Status:</span>
-                                 <span><Button color="gray" pill onClick={()=>handleStatusChange(food._id)}>
+                                 <span>
+                                    <Link to={`/status/${food._id}`}>
+                                    <Button color="gray" pill>
                                     {food.status}
-                                </Button></span>
+                                </Button>
+                                    </Link>
+                                </span>
                             </div>
 
 

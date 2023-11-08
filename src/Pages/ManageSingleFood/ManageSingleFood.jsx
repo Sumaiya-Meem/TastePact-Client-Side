@@ -3,8 +3,8 @@ import useRequestFood from "../../Hooks/useRequestFood";
 import Loading from "../Loading/Loading";
 import { useEffect, useState } from "react";
 import { Button, Card } from 'flowbite-react';
-import useFood from "../../Hooks/useFood";
-import axios from 'axios';
+// import useFood from "../../Hooks/useFood";
+// import axios from 'axios';
 
 const ManageSingleFood = () => {
     const { isLoading, error, data } = useRequestFood();

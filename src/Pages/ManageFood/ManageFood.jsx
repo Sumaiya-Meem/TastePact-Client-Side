@@ -15,17 +15,25 @@ import "./table.css"
 const ManageFood = () => {
     const { user } = useContext(AuthContext);
     const loggedUser = user.email;
-    const { isLoading, error, data } = useFood();
+    console.log(loggedUser)
+    // const { isLoading, error, data } = useFood();
     const [addFood, setAddFood] = useState([]);
 
     useEffect(() => {
         document.title = 'HarvestSwap | Manage Food';
 
-        if (!isLoading && !error && data) {
-            const foodAddedByUser = data.filter(food => food.userEmail === loggedUser);
-            setAddFood(foodAddedByUser);
-        }
-    }, [isLoading, error, data, loggedUser]);
+        const url = `http://localhost:5000/addedFoods?userEmail=${user.email}`;
+
+        axios.get(url,{withCredentials:true})
+        .then(res=>{
+            setAddFood(res.data)
+        })
+
+        // if (!isLoading && !error && data) {
+        //     const foodAddedByUser = data.filter(food => food.userEmail === loggedUser);
+        //     setAddFood(foodAddedByUser);
+        // }
+    }, []);
 
 
     const columns = React.useMemo(

@@ -40,7 +40,7 @@ const SingleFood = () => {
             date, customerNote, donationMoney,requesterName,requesterImage,status
         }
         //  console.log(requestFoodInfo);
-        axios.post("http://localhost:5000/requestFoods", requestFoodInfo)
+        axios.post("https://share-nourishment-server-side.vercel.app/requestFoods", requestFoodInfo)
             .then(res => {
                 // console.log(res.data)
                 if (res.data.insertedId) {

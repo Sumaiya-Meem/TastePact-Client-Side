@@ -1,40 +1,41 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 // import useRequestFood from "../../Hooks/useRequestFood";
-// import Loading from "../Loading/Loading";
+import Loading from "../Loading/Loading";
 import { Card } from 'flowbite-react';
 import { Button } from 'flowbite-react';
 import { CiCircleRemove } from 'react-icons/ci';
 import Swal from "sweetalert2";
 import axios from 'axios';
+import useRequestFood from "../../Hooks/useRequestFood";
 
 
 const RequestFood = () => {
     const { user } = useContext(AuthContext)
-    // console.log(user.email)
-    // const { isLoading, error, data } = useRequestFood();
+    console.log(user.email)
+    const { isLoading, error, data } = useRequestFood();
 
     const [matchedRequests, setMatchedRequests] = useState([]);
 
     useEffect(() => {
         document.title = 'HarvestSwap | My Request Food';
-        const url = `http://localhost:5000/requestFoods?requesterEmail=${user.email}`;
+        // const url = `http://localhost:5000/requestFoods?requesterEmail=${user.email}`;
 
-        axios.get(url,{withCredentials:true})
-        .then(res=>{
-            setMatchedRequests(res.data)
-        })
+        // axios.get(url,{withCredentials:true})
+        // .then(res=>{
+        //     setMatchedRequests(res.data)
+        // })
        
 
-    //     if (!isLoading && !error && data && user) {
-    //         const requestUser = data.filter(request => request.requesterEmail === user.email);
-    //         setMatchedRequests(requestUser);
-    //     }
-    }, [user.email]);
+        if (!isLoading && !error && data && user) {
+            const requestUser = data.filter(request => request.requesterEmail === user.email);
+            setMatchedRequests(requestUser);
+        }
+    }, [isLoading ,data,error,user]);
 
-    // if (isLoading) return <Loading />;
+    if (isLoading) return <Loading />;
 
-    // if (error) return 'An error has occurred: ' + error.message;
+    if (error) return 'An error has occurred: ' + error.message;
     const handleDelete = (id) =>{
         console.log('delete',id)
         Swal.fire({
@@ -47,7 +48,7 @@ const RequestFood = () => {
         })
         .then((res)=>{
            if(res.isConfirmed){
-            axios.delete(`http://localhost:5000/requestFoods/${id}`)
+            axios.delete(`https://share-nourishment-server-side.vercel.app/requestFoods/${id}`)
             .then(res => {
                         console.log(res.data)
                         if (res.data.deletedCount > 0) {

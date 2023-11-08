@@ -29,7 +29,7 @@ const UpdateFood = () => {
         }
         // console.log(updateFoodInfo)
 
-       axios.put(`http://localhost:5000/addedFoods/${data._id}`,updateFoodInfo)
+       axios.put(`https://share-nourishment-server-side.vercel.app/addedFoods/${data._id}`,updateFoodInfo)
        .then(res=>{
         // console.log(res.data)
         if (res.data.modifiedCount>0) {

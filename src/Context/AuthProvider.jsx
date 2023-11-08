@@ -7,6 +7,7 @@ export const AuthContext =createContext(null);
 const auth = getAuth(app);
 
 const googleProvider = new GoogleAuthProvider();
+// const githubProvider = new githubProvider();
 
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({children}) => {
@@ -18,6 +19,10 @@ const AuthProvider = ({children}) => {
         setHandleReload(true);
         return signInWithPopup(auth, googleProvider);
     }
+    // const githubSignIn =() =>{
+    //     setHandleReload(true);
+    //     return signInWithPopup(auth, githubProvider);
+    // }
     const createNewUser=(email,password)=>{
         setHandleReload(true);
         return createUserWithEmailAndPassword(auth, email, password);
@@ -50,7 +55,8 @@ const AuthProvider = ({children}) => {
    userLogin,
    googleSignIn,
    userLogOut,
-   handleReload
+   handleReload,
+//    githubSignIn
   }
 
     return (

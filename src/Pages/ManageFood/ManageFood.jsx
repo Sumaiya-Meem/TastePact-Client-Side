@@ -15,25 +15,17 @@ import "./table.css"
 const ManageFood = () => {
     const { user } = useContext(AuthContext);
     const loggedUser = user.email;
-    console.log(loggedUser)
-    // const { isLoading, error, data } = useFood();
+    const { isLoading, error, data } = useFood();
     const [addFood, setAddFood] = useState([]);
 
     useEffect(() => {
         document.title = 'HarvestSwap | Manage Food';
 
-        const url = `http://localhost:5000/addedFoods?userEmail=${user.email}`;
-
-        axios.get(url,{withCredentials:true})
-        .then(res=>{
-            setAddFood(res.data)
-        })
-
-        // if (!isLoading && !error && data) {
-        //     const foodAddedByUser = data.filter(food => food.userEmail === loggedUser);
-        //     setAddFood(foodAddedByUser);
-        // }
-    }, []);
+        if (!isLoading && !error && data) {
+            const foodAddedByUser = data.filter(food => food.userEmail === loggedUser);
+            setAddFood(foodAddedByUser);
+        }
+    }, [isLoading, error, data, loggedUser]);
 
 
     const columns = React.useMemo(
@@ -96,7 +88,7 @@ const ManageFood = () => {
         })
         .then((res)=>{
            if(res.isConfirmed){
-            axios.delete(`http://localhost:5000/addedFoods/${id}`)
+            axios.delete(`https://share-nourishment-server-side.vercel.app/addedFoods/${id}`)
             .then(res => {
                         console.log(res.data)
                         if (res.data.deletedCount > 0) {

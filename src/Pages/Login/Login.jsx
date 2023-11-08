@@ -29,12 +29,12 @@ const Login = () => {
 
         userLogin(email, password)
             .then(res => {
-                // console.log(res.user)
+                console.log(res.user)
 
                 const loggedInUser = { email }
                 // 
                 // access token
-                axios.post('http://localhost:5000/jwt', loggedInUser, { withCredentials: true })
+                axios.post('https://share-nourishment-server-side.vercel.app/jwt', loggedInUser, { withCredentials: true })
                     .then(res => { 
                         console.log(res.data) 
                         if (res.data.success) {
@@ -60,12 +60,11 @@ const Login = () => {
         googleSignIn()
             .then(res => {
                 res.user
-                
+                console.log(res.user.email)
                 const loggedInUser = (res.user.email)
-                console.log(loggedInUser)
                 // 
                 // access token
-                axios.post('http://localhost:5000/jwt', loggedInUser, { withCredentials: true })
+                axios.post('https://share-nourishment-server-side.vercel.app/jwt', loggedInUser, { withCredentials: true })
                     .then(res => { 
                         console.log(res.data) 
                         if (res.data.success) {
@@ -79,8 +78,8 @@ const Login = () => {
                     })
                 
 
-            })
-        
+            }
+            )
             .catch(error => {
                 console.log(error.message)
             })

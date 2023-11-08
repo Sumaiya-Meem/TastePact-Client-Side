@@ -8,7 +8,7 @@ import { Button, Card } from 'flowbite-react';
 
 const ManageSingleFood = () => {
     const { isLoading, error, data } = useRequestFood();
-    // console.log(data)
+    console.log(data)
     // const {data: addedFoodData } = useFood();
 
     const loadedData = useLoaderData()

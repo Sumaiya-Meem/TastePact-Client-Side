@@ -34,7 +34,7 @@ const AddFood = () => {
         // console.log(addFoodInfo)
     
 
- axios.post("http://localhost:5000/addedFoods",addFoodInfo)
+ axios.post("https://share-nourishment-server-side.vercel.app/addedFoods",addFoodInfo)
  .then(res=>{
     console.log(res.data)
     if (res.data.insertedId) {

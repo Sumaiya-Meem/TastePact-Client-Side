@@ -4,7 +4,7 @@ const useFood = () => {
         queryKey: ['addedFood'],
         queryFn: async () =>{
         //  const food= await fetch('http://localhost:5000/addedFoods');
-         const food= await fetch('http://localhost:5000/addedFoods');
+         const food= await fetch('https://share-nourishment-server-side.vercel.app/addedFoods');
          return await food.json();
         }
     

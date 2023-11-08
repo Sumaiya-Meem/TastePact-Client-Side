@@ -37,26 +37,26 @@ const router = createBrowserRouter([
         {
           path:"/food/:id",
           element:<PrivateRoute><SingleFood></SingleFood></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/addedFoods/${params.id}`)
+          loader:({params})=>fetch(`https://share-nourishment-server-side.vercel.app/addedFoods/${params.id}`)
 
         },
         {
           path:"/updateFood/:id",
           element:<PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/addedFoods/${params.id}`)
+          loader:({params})=>fetch(`https://share-nourishment-server-side.vercel.app/addedFoods/${params.id}`)
 
         },
         {
           path:"/status/:id",
           element:<PrivateRoute><UpdateStatus></UpdateStatus></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/requestFoods/${params.id}`)
+          loader:({params})=>fetch(`https://share-nourishment-server-side.vercel.app/requestFoods/${params.id}`)
 
         },
         
         {
           path:"/availableFood/food/:id",
           element:<PrivateRoute><SingleFood></SingleFood></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/addedFoods/${params.id}`)
+          loader:({params})=>fetch(`https://share-nourishment-server-side.vercel.app/addedFoods/${params.id}`)
 
         },
 
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         {
           path:"/manageFood/:id",
           element:<PrivateRoute><ManageSingleFood></ManageSingleFood></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/addedFoods/${params.id}`)
+          loader:({params})=>fetch(`https://share-nourishment-server-side.vercel.app/addedFoods/${params.id}`)
 
         },
         {

@@ -66,7 +66,7 @@ const Home = () => {
             <div className="my-6">
                 <div className="flex justify-center items-center gap-2">
                     <div className="h-12 w-1 bg-amber-400"></div>
-                    <h1 className="text-3xl font-semibold text-[#5346b4]">Our Happy Clients</h1>
+                    <h1 className="text-3xl font-semibold text-[#5346b4]">Our Happy</h1>
                 </div>
             </div>
            <Review></Review>

@@ -19,7 +19,7 @@ const SingleFood = () => {
     const [customerNote, setCustomerNote] = useState('');
     const [donationMoney, setDonationMoney] = useState('');
 
-    const { _id, userName, userEmail, foodImage, foodName, location, quantity, date } = data || "Not-Given"
+    const { _id, userName, userEmail, foodImage, foodName, location, quantity, date,status } = data || "Not-Given"
     // console.log(userName,userImage)
 
     const getCurrentTime = () => {
@@ -37,7 +37,7 @@ const SingleFood = () => {
     const handleRequestFood = () => {
         const requestFoodInfo = {
             _id, foodName, foodImage, userEmail, userName, requesterEmail, currentTime, location,
-            date, customerNote, donationMoney,requesterName,requesterImage,status:'pending'
+            date, customerNote, donationMoney,requesterName,requesterImage,status
         }
         //  console.log(requestFoodInfo);
         axios.post("http://localhost:5000/requestFood", requestFoodInfo)

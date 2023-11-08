@@ -5,6 +5,8 @@ import Banner from "../../components/Banner/Banner";
 import Loading from "../Loading/Loading";
 import { Link} from 'react-router-dom';
 import { useEffect } from 'react';
+import Faq from '../../components/FAQ/Faq';
+import Review from '../../components/Review/Review';
 // import { useEffect } from 'react';
 
 
@@ -52,6 +54,23 @@ const Home = () => {
             <div className='w-[100px] mx-auto my-5'>
                     <Link to="/availableFood"><Button color="warning">Show All</Button></Link>
                 </div>
+            
+            {/* faq section */}
+            <div className="my-6">
+                <div className="flex justify-center items-center gap-2">
+                    <div className="h-12 w-1 bg-amber-400"></div>
+                    <h1 className="text-3xl font-semibold text-[#5346b4]">FAQ</h1>
+                </div>
+            </div>
+            <Faq></Faq>
+            <div className="my-6">
+                <div className="flex justify-center items-center gap-2">
+                    <div className="h-12 w-1 bg-amber-400"></div>
+                    <h1 className="text-3xl font-semibold text-[#5346b4]">Our Happy Clients</h1>
+                </div>
+            </div>
+           <Review></Review>
+
         </div>
     );
 };

@@ -7,6 +7,7 @@ import { MdStreetview } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 const AvailableFoodCard = ({data}) => {
     const { _id,foodImage, foodName, userName, userImage, quantity, location, date, note } = data;
+    console.log(data)
     return (
         <div>
             <Card className='h-[650px]'>
